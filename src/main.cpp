@@ -14,7 +14,7 @@
 int main(int argc, char** argv) {
     Days days = Days();
 
-    days.initialize(argv[1]);
+    days.initialize(argv[1], argv[2]);
     // TODO: Use parameters to determine what the algorithm should output etc
     days.run();
 }
