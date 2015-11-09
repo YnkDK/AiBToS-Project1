@@ -16,5 +16,5 @@ int main(int argc, char** argv) {
 
     days.initialize(argv[1], argv[2]);
     // TODO: Use parameters to determine what the algorithm should output etc
-    days.run();
+    cout << days.run() << endl;
 }
