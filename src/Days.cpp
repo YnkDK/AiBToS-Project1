@@ -168,7 +168,8 @@ size_t Days::run() {
     visited.resize(graph1.size(), false);
     step2(root);
     // Step 4 (part 2), find all splits in T2
-    visited.assign(graph2.size(), false);
+    fill(visited.begin(), visited.begin()+graph2.size(), false);
+//    visited.assign(graph2.size(), false);
     step4(root);
 
     // Step 4 (part 3), find all shared splits between T1 and T2
