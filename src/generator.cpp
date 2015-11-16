@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
     size_t sizeP2 = atoi(argv[1]);
     
     ofstream fout; 
-    fout.open("adj"+to_string(sizeP2)+".adj", ios_base::out);
+    fout.open("adj"+to_string(sizeP2)+".txt", ios_base::out);
     
     size_t numLeafs = pow(2,sizeP2);
     size_t size = 2*numLeafs-1;
@@ -43,11 +43,16 @@ int main(int argc, char* argv[]){
     }
     
     fout<<adj.size()<<endl;
+    fout<<1<<" "<<size<<endl;
     for(i=0;i<size;i++){
-        fout<<adj[i].size()<<" ";
+        if(i==size-1)
+            fout<<adj[i].size()+1<<" ";
+        else fout<<adj[i].size()<<" ";
         for(j=0;j<adj[i].size();j++){
-            fout<<adj[i][j]<<" ";
+            fout<<adj[i][j]+1<<" ";
         }
+        if(i==size-1)
+            fout<<0<<" ";
         fout<<endl;
     }
     fout.close();
