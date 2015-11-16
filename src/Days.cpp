@@ -202,8 +202,8 @@ size_t Days::run() {
                 // node1 is always filled with consequently filled intervals, thus that size of node1 always indicates
                 // a legal split
                 sharedSplits++;
+                t1++;
             }
-            t1++;
             t2++;
         } else if(node1 < node2){
             t1++;
