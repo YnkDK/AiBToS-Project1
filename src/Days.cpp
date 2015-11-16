@@ -268,6 +268,5 @@ size_t Days::run() {
     }
     // The RF-distance is then "number of splits not found in both trees", which is equal to the number of splits
     // in both trees, minus all the shared splits between T1 and T2 minus all the shared splits in T2 and T1
-    cout << "Size 1: " << size1 << " size 2 " << size2 << " shared " << sharedSplits << " leaves: " << numberOfLeaves << endl;
     return size1 + size2 - 2*sharedSplits;
 }
