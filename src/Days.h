@@ -69,6 +69,7 @@ private:
     std::vector<bool> visited;
     node step2(size_t curNode);
     node step4(size_t curNode);
+    void radixSort(vector<node> &data);
     size_t step2Counter;
     
 public:
