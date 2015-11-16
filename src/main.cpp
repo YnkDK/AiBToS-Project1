@@ -12,13 +12,12 @@
 #include "Days.h"
 #include <time.h>
 
-#define PERFORMANCE
 int main(int argc, char** argv) {
     Days days = Days();
 
     days.initialize(argv[1], argv[2]);
     // TODO: Use parameters to determine what the algorithm should output etc
-#if PERFORMANCE 0
+#ifndef PERFORMANCE
     cout << days.run();
 #else
     clock_t start, stop;
@@ -26,7 +25,6 @@ int main(int argc, char** argv) {
     start = clock();
     distance = days.run();
     stop = clock();
-    cout << (double) (stop - start) / CLOCKS_PER_SEC << " " << distance;
-
+    cout << (double) (stop - start) / CLOCKS_PER_SEC << " " << days.numberOfLeaves << " " << distance;
 #endif
 }

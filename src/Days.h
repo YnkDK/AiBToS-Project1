@@ -65,17 +65,17 @@ private:
     std::vector<node> graph2NodeInfo;
     void readFile(const char *file, vector<vector<size_t>>& graph);
     size_t root;
-    size_t numberOfLeaves;
     std::vector<size_t> dfsLabels;
     std::vector<bool> visited;
     node step2(size_t curNode);
     node step4(size_t curNode);
     void radixSort(vector<node> &data);
     size_t step2Counter;
-    
 public:
+
     ~Days() {
     }
+    size_t numberOfLeaves;
 
     void initialize(const char *filename1, const char *filename2);
     size_t run();

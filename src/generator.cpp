@@ -40,7 +40,7 @@ int main(int argc, char* argv[]){
     
     }
 
-    cout << adj.size() << endl;
+    cout << adj.size() + 1 << endl;
     cout << 1 << " " << size << endl;
     for(i=0;i<size;i++){
         if(i==size-1)

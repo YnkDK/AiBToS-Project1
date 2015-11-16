@@ -10,6 +10,8 @@
 
 /bin/AiBToS_Project1
 /bin/TreeGenerator
+/bin/.Rhistory
+/bin/AiBToS_Project1_perf
 # Compiled Dynamic libraries
 *.so
 *.dylib
