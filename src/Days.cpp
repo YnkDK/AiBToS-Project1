@@ -73,6 +73,55 @@ void Days::readFile(const char* file, vector<vector<size_t>> &graph) {
 
 }
 
+void Days::radixSort(vector<node>& data){
+
+    size_t size = data.size();
+
+    vector<node> tmpData(size);
+    
+    vector<size_t> counters(size,0);
+    
+    size_t i,tot,oldCount;
+    
+    for(i=0;i<size;i++){
+        counters[data[i].maxLabel-1]++;
+    }
+    tot = 0;
+    for(i=0;i<size;i++){
+        oldCount = counters[i];
+        counters[i] = tot;
+        tot += oldCount;
+    }
+    
+    //sort everything by max label, use counters to find the right positions
+    for(i=0;i<size;i++){
+        tmpData[counters[data[i].maxLabel-1]] = data[i];
+        counters[data[i].maxLabel-1]++;
+    }
+    
+    for(i=0;i<size;i++){
+        counters[i] = 0;
+    }
+    
+    for(i=0;i<size;i++){
+        counters[tmpData[i].minLabel-1]++;
+    }
+    
+    tot = 0;
+    for(i=0;i<size;i++){
+        oldCount = counters[i];
+        counters[i] = tot;
+        tot += oldCount;
+    }
+    
+    //sort everything by min label, use counters to find the right positions
+    for(i=0;i<size;i++){
+        data[counters[tmpData[i].minLabel-1]] = tmpData[i];
+        counters[tmpData[i].minLabel-1]++;
+    }
+    
+}
+
 /**
  * Sets the internal states corresponding to the two trees given as arguments
  */
@@ -157,6 +206,7 @@ Days::node Days::step4(size_t curNode) {
 
 }
 
+
 size_t Days::run() {
     // Step 1, pick a common root
     // The input files are required to have all leafs first in the file, sorted such that they have the same order,
@@ -175,8 +225,10 @@ size_t Days::run() {
 
     // Step 4 (part 3), find all shared splits between T1 and T2
     //TODO: use radix sort
-    sort(graph1NodeInfo.begin(), graph1NodeInfo.end(), Days::comp());
-    sort(graph2NodeInfo.begin(), graph2NodeInfo.end(), Days::comp());
+    //sort(graph1NodeInfo.begin(), graph1NodeInfo.end(), Days::comp());
+    //sort(graph2NodeInfo.begin(), graph2NodeInfo.end(), Days::comp());
+    radixSort(graph1NodeInfo);
+    radixSort(graph2NodeInfo);
     
 //    size_t i;
 //    for(i=0;i<graph1NodeInfo.size();i++){
