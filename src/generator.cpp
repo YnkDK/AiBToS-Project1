@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
     size_t sizeP2 = atoi(argv[1]);
     
     ofstream fout; 
-    fout.open("adj"+to_string(sizeP2)+".txt", ios_base::out);
+    fout.open("adj"+to_string(sizeP2)+".adj", ios_base::out);
     
     size_t numLeafs = pow(2,sizeP2);
     size_t size = 2*numLeafs-1;
