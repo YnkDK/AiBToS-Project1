@@ -48,6 +48,12 @@ void Days::readFile(const char* file, vector<vector<size_t>> &graph) {
         if(tmpSize == 1) {
             numberOfLeaves++;
         }
+        if(tmpSize == 1 && expectInternalNode) {
+            cerr << "Expected internal node at node " << i << " in file " << file << endl;
+            exit(EXIT_FAILURE);
+        } else if(tmpSize > 1) {
+            expectInternalNode = true;
+        }
         for(j = 0; j < tmpSize; j++) {
             size_t tmpId;
             fin>>tmpId;
@@ -90,6 +96,7 @@ Days::node Days::step2(size_t curNode) {
     graph1NodeInfo[curNode].size = 0;
     graph1NodeInfo[curNode].minLabel = inf;
     graph1NodeInfo[curNode].maxLabel = 0;   //< Note that labeling starts at 1, thus no label can ever be 0
+    visited[curNode] = true;
 
     if(curNode!=root && graph1[curNode].size() == 1) {
         // Set the DF-numbering/labeling at the given leaf
@@ -102,7 +109,6 @@ Days::node Days::step2(size_t curNode) {
         step2Counter++;
         return graph1NodeInfo[curNode];
     }
-    visited[curNode] = true;
 
 
     for(size_t neighbour : graph1[curNode]){
@@ -128,16 +134,16 @@ Days::node Days::step4(size_t curNode) {
     graph2NodeInfo[curNode].size = 0;
     graph2NodeInfo[curNode].minLabel = inf;
     graph2NodeInfo[curNode].maxLabel = 0;
-    
+    visited[curNode] = true;
+
     if(curNode!=root && graph2[curNode].size() == 1){
         graph2NodeInfo[curNode].size = 1;
         graph2NodeInfo[curNode].minLabel = dfsLabels[curNode];
         graph2NodeInfo[curNode].maxLabel = dfsLabels[curNode];
         return graph2NodeInfo[curNode];
     }
-    
-    visited[curNode] = true;
-    
+
+
     for(size_t neighbour : graph2[curNode]){
         if(!visited[neighbour]){
             node info = step4(neighbour);
@@ -193,7 +199,7 @@ size_t Days::run() {
         const node node2 = graph2NodeInfo[t2];
         
         if(node1 == node2){
-            if(node1.size == node2.size) {
+            if(node1.size == node2.size || true) {
                 // node1 is always filled with consequently filled intervals, thus that size of node1 always indicates
                 // a legal split
                 sharedSplits++;
@@ -209,5 +215,6 @@ size_t Days::run() {
     }
     // The RF-distance is then "number of splits not found in both trees", which is equal to the number of splits
     // in both trees, minus all the shared splits between T1 and T2 minus all the shared splits in T2 and T1
+    cout << "Size 1: " << size1 << " size 2 " << size2 << " shared " << sharedSplits << endl;
     return size1 + size2 - 2*sharedSplits;
 }

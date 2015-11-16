@@ -32,12 +32,12 @@ private:
         
         bool operator==(const node& rhs) const
         {
-            return std::tie(minLabel, maxLabel) == std::tie(rhs.minLabel, rhs.maxLabel);
+            return minLabel == rhs.minLabel && maxLabel == rhs.maxLabel;
         }
         
         bool operator<(const node& rhs) const
         {
-            return std::tie(minLabel, maxLabel) < std::tie(rhs.minLabel, rhs.maxLabel);
+            return minLabel < rhs.minLabel || (minLabel == rhs.minLabel && maxLabel < rhs.maxLabel);
         }
 
     };
