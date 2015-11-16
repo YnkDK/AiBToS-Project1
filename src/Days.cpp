@@ -251,7 +251,8 @@ size_t Days::run() {
         const node node2 = graph2NodeInfo[t2];
         
         if(node1 == node2){
-            if(node1.size == node2.size || true) {
+            if(node1.size == node2.size) {
+//            if(node2.maxLabel - node2.minLabel + 1 == node2.size) {
                 // node1 is always filled with consequently filled intervals, thus that size of node1 always indicates
                 // a legal split
                 sharedSplits++;
@@ -267,6 +268,6 @@ size_t Days::run() {
     }
     // The RF-distance is then "number of splits not found in both trees", which is equal to the number of splits
     // in both trees, minus all the shared splits between T1 and T2 minus all the shared splits in T2 and T1
-    cout << "Size 1: " << size1 << " size 2 " << size2 << " shared " << sharedSplits << endl;
+    cout << "Size 1: " << size1 << " size 2 " << size2 << " shared " << sharedSplits << " leaves: " << numberOfLeaves << endl;
     return size1 + size2 - 2*sharedSplits;
 }

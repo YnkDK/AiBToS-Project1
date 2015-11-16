@@ -57,7 +57,8 @@ adjacent = to_adjacency_list(Phylo.read(argv[1], 'newick'))
 with open(argv[1][:-7] + '.adj', 'wb') as f:
     # Write the number of nodes
     f.write(str(len(adjacent)) + "\n")
-    for k in sorted(adjacent.keys(), key=int):
+
+    for k in sorted(adjacent.keys(), key=lambda x: len(adjacent[x])):
         adj = list(adjacent[k])
         # Write the length of the adjecency list and then all adjacent nodes
         f.write(str(len(adj)) + ' ' + ' '.join(adj) + "\n")
