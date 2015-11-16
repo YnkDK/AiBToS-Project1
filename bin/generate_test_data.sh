@@ -10,6 +10,6 @@ if [ ! -f TreeGenerator ]; then
     rm -rf tmp/
     echo "Compiled new version"
 fi
-for i in $(seq 7 20); do
+for i in $(seq 2 20); do
     ./TreeGenerator "${i}" > "../input/test${i}.adj"
 done
