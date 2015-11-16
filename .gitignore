@@ -8,6 +8,7 @@
 *.gch
 *.pch
 
+/bin/AiBToS_Project1
 # Compiled Dynamic libraries
 *.so
 *.dylib
