@@ -9,6 +9,7 @@
 *.pch
 
 /bin/AiBToS_Project1
+/bin/TreeGenerator
 # Compiled Dynamic libraries
 *.so
 *.dylib

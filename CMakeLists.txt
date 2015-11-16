@@ -11,3 +11,5 @@ set(SOURCE_FILES
         src/main.cpp src/Days.cpp src/Days.h)
 
 add_executable(AiBToS_Project1 ${SOURCE_FILES})
+
+add_executable(TreeGenerator src/generator.cpp)
