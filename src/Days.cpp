@@ -45,13 +45,8 @@ void Days::readFile(const char* file, vector<vector<size_t>> &graph) {
     for(i = 0; i < size; i++) {
         size_t tmpSize;
         fin >> tmpSize;
-        if(tmpSize == 1 && expectInternalNode) {
-            cerr << "All leaf nodes have to be first in the input file!" << endl;
-            exit(EXIT_FAILURE);
-        } else if(tmpSize == 1){
+        if(tmpSize == 1) {
             numberOfLeaves++;
-        } else {
-            expectInternalNode = true;
         }
         for(j = 0; j < tmpSize; j++) {
             size_t tmpId;
