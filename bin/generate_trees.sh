@@ -15,5 +15,5 @@ for i in ../input/*.stockholm; do
 done
 
 for i in ../input/*.newick; do
-    python parser.py "$i"
+    python3 parser3.py "$i"
 done
