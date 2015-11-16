@@ -16,4 +16,4 @@ tree2 = dendropy.Tree.get(
 tree1.encode_bipartitions()
 tree2.encode_bipartitions()
 
-print treecompare.symmetric_difference(tree1, tree2)
+print(treecompare.symmetric_difference(tree1, tree2))

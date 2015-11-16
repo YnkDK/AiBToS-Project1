@@ -36,30 +36,26 @@ internal = dict()
 mapping = dict()
 adjacency_list = dict()
 
-i = 0
 for idx, row in enumerate(adjacent):
-    if sum(row) == 1.0:
-        leaves[i] = row
-        mapping[idx] = i
-        i += 1
+    if 0.5 < sum(row) < 1.5:
+        leaves[clades[idx].name] = idx
+
+i = 0
+for name in sorted(leaves.keys()):
+    mapping[leaves[name]] = i
+    i += 1
 
 for idx, row in enumerate(adjacent):
     if sum(row) > 1.0:
-        internal[i] = row
         mapping[idx] = i
         i += 1
 
-for i, leaf in leaves.items():
-    adjacency_list[i] = list()
-    for n_idx, neighbor in enumerate(leaf):
-        if neighbor == 1.:
-            adjacency_list[i].append(mapping[n_idx])
-
-for i, leaf in internal.items():
-    adjacency_list[i] = list()
-    for n_idx, neighbor in enumerate(leaf):
-        if neighbor == 1.:
-            adjacency_list[i].append(mapping[n_idx])
+for idx, row in enumerate(adjacent):
+    tmp = list()
+    for neighbor, element in enumerate(row):
+        if element > 0.5:
+            tmp.append(mapping[neighbor])
+    adjacency_list[mapping[idx]] = tmp
 
 with open(argv[1][:-7] + '.adj', 'wb') as f:
     f.write(bytes(str(len(adjacency_list)), 'utf8') + b"\n")
