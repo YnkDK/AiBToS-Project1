@@ -12,7 +12,8 @@ for i in ../input/*.stockholm; do
     
     ./quicktree $i | tr -d '[:space:]' > "$OUTPUT-quicktree$EXTENSION"
     ./rapidnj -i sth $i | sed -e "s/'//g" | tr -d '[:space:]' > "$OUTPUT-rapidnj$EXTENSION"
-    
-    python parser.py "$OUTPUT-quicktree$EXTENSION"
-    python parser.py "$OUTPUT-rapidnj$EXTENSION"
+done
+
+for i in ../input/*.newick; do
+    python parser.py "$i"
 done
